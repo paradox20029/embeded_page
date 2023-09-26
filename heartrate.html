@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Heart Rate Monitoring</title>
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-4">Heart Rate Monitoring</h1>
+            <p class="lead">Your Partner in Health and Wellness</p>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="temperature.html">Temperature</a></li>
+            <li><a href="heartrate.html">Heart Rate</a></li>
+            <li><a href="oxygen.html">Oxygen Level</a></li>
+            <li><a href="sensor.html">sensor Level</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Current Heart Rate</h2>
+        <p>The current heart rate is: <span id="heartRate">75 BPM</span></p>
+        <!-- You can add more content related to heart rate monitoring here -->
+        <h2> Heart rate Level</h2>
+        <!-- Placeholder for the plot -->
+    <div id="heart-plot"></div>
+
+    <script>
+        // Sensor data
+        const sensorData = {
+            x: [1, 2, 3, 4, 5], // X-axis data
+            y: [103, 108, 101, 113, 102], // Y-axis data
+            type: 'scatter', // Plot type (line plot in this case)
+            mode: 'lines+markers', // Display lines and markers
+            name: 'Sensor Data', // Label for the data series
+        };
+
+        // Layout configuration
+        const layout = {
+            title: 'Sensor Data Plot',
+            xaxis: {
+                title: 'Time',
+            },
+            yaxis: {
+                title: 'Heart rate',
+            },
+        };
+
+        // Render the plot
+        const plotElement = document.getElementById('heart-plot');
+        Plotly.newPlot(plotElement, [sensorData], layout);
+
+        // Example: Update the data and re-render the plot
+        setTimeout(() => {
+            sensorData.x = [1, 2, 3, 4, 5, 6];
+            sensorData.y = [103, 108, 101, 113, 102, 100];
+            Plotly.update(plotElement, [sensorData]);
+        }, 3000); // Update the plot after 3 seconds (for demonstration)
+    </script>
+    </main>
+    <footer>
+        <p>&copy; 2023 Smart Health Monitoring System</p>
+    </footer>
+</body>
+</html>
